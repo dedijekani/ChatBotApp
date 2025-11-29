@@ -1,33 +1,56 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Tabs } from "expo-router";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarActiveTintColor: "#4496eeff",
+        headerShadowVisible: true,
+        headerStyle: {
+          shadowColor: "gray",
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Chat",
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons
+              name={focused ? "chatbox" : "chatbox-outline"}
+              size={24}
+              color={color}
+            />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="about"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "About",
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons
+              name={
+                focused ? "information-circle" : "information-circle-outline"
+              }
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="seting"
+        options={{
+          title: "Seting",
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons
+              name={focused ? "settings" : "settings-outline"}
+              size={24}
+              color={color}
+            />
+          ),
         }}
       />
     </Tabs>
